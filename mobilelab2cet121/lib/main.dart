@@ -1,27 +1,44 @@
+// main.dart
 import 'package:flutter/material.dart';
-// import 'package:mobilelab2cet121/screen/home.dart'; // ตรวจสอบว่า path นี้ถูกต้อง
+import 'package:mobilelab2cet121/screen/addform.dart';
 import 'package:mobilelab2cet121/screen/item.dart';
 
 void main() {
-  // 3. เรียกใช้ Widget หลักของแอป
   runApp(const MyApp());
 }
 
-// 1. สร้าง StatelessWidget ใหม่ชื่อ MyApp
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // 2. ย้าย MaterialApp มาไว้ในเมธอด build
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text("CET App my 121"),
-          backgroundColor: Colors.red,
-          centerTitle: true,
-        ),
-        body: const Item(), //body: const Home(),
+      home: const HomePage(), // เรียก widget แยก
+    );
+  }
+}
+
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("CET App my 121"),
+        backgroundColor: Colors.red,
+        centerTitle: true,
+      ),
+      body: const Item(),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.amber,
+        child: const Icon(Icons.add, size: 40, color: Colors.white),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const AddForm()),
+          );
+        },
       ),
     );
   }
